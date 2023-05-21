@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import util
+
 def bubble_sort(array):
     i = 0
     i_max_iter = len(array) - 1
@@ -9,7 +11,7 @@ def bubble_sort(array):
         shouldBubble = False
         for i in range(i_max_iter):
             if array[i] > array[i+1]:
-                array[i], array[i+1] = array[i+1], array[i]
+                util.swap(i, i + 1, array)
                 shouldBubble = True
         i_max_iter -= 1   
 

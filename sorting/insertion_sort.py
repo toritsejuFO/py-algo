@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import util
+
 def insertion_sort(array):
     # loop through entire array
     for i, item in enumerate(array):
@@ -11,18 +13,16 @@ def insertion_sort(array):
 
         # loop through sorted array backwards (from last to first)
         while sorted_i >= 0:
-            # get item in sorted array (going backwards)
-            sorted_item = array[sorted_i]
+            # if item to be sorted is greater than/equal current item in sorted array,
+            # item is already sorted, no swaps will eventually be made again
+            # hence stop comparing other items in sorted array
+            if item >= array[sorted_i]: break
 
             # perform swap if item to be sorted is less than current item in sorted array
-            if item < sorted_item:
-                array[sorted_i], array[i] = item, sorted_item
+            if item < array[sorted_i]:
+                util.swap(i, sorted_i, array)
                 i -= 1 # if swap is made, reduce index of item to be sorted
                 sorted_i -= 1 # reduce index in sorted array to continue backwards search
-            
-            # if item to be sorted is greater than current item in sorted array, item is already sorted
-            # no swaps will eventually be made again, so breakout of checking other items in sorted array
-            else: break
 
     return array
 
